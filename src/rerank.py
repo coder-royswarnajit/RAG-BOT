@@ -5,7 +5,7 @@ class Reranker:
         self.model = CrossEncoder(model_name)
 
     def rerank(self, query, candidates, top_k=5):
-        pairs = [(query, c["chunk"]) for c in candidates]
+        pairs = [(query, c["text"]) for c in candidates]
         scores = self.model.predict(pairs)
 
         for c, s in zip(candidates, scores):

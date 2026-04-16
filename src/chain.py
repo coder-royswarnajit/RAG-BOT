@@ -8,7 +8,7 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def call_llm(prompt, max_tokens=1024):
     response = client.chat.completions.create(
-        model="mixtral-8x7b-32768",
+        model="llama-3.3-70b-versatile",
         messages=[{"role": "system", "content": "You are a strict RAG assistant. Use ONLY provided evidence. Do not hallucinate."},
                   {"role": "user", "content": prompt}],
         max_tokens=max_tokens
@@ -41,7 +41,7 @@ def select_and_plan(query, evidence):
             Keep your response concise and focused."""
 
     message = client.chat.completions.create(
-        model="mixtral-8x7b-32768",
+        model="llama-3.3-70b-versatile",
         max_tokens=1024,
         messages=[
             {"role": "user", "content": prompt}
@@ -81,7 +81,7 @@ def generate_answer(plan):
                 """
 
     response = client.chat.completions.create(
-        model="mixtral-8x7b-32768",
+        model="llama-3.3-70b-versatile",
         messages=[
             {"role": "system", "content": "Strict RAG mode. No hallucination."},
             {"role": "user", "content": prompt}

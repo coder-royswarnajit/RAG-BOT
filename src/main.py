@@ -14,13 +14,26 @@ def main():
 
     chunks = build_chunks(docs, chunk_size=700, chunk_overlap=70)
     agent = RAGAgent(chunks)
+    
 
-    query = input("Enter your query: ").strip()
+    while True:
+        query = input("Enter your query: ").strip()
 
-    result = agent.query(query)
+        if query.lower() in ["exit", "quit"]:
+            print("Exiting chatbot. Goodbye!")
+            break
 
-    print("ANSWER:\n",result)
+        if not query:
+            print("Please enter a valid query.\n")
+            continue
+
+        try:
+            result = agent.query(query)
+            print("\nANSWER:\n", result, "\n")
+        except Exception as e:
+            print(f"[ERROR] {e}\n")
 
 
 if __name__ == "__main__":
+    
     main()

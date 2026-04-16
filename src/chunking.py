@@ -19,8 +19,8 @@ def build_chunks(docs, chunk_size=500, chunk_overlap=100):
             all_chunks.append({
                 "doc_id": doc.get("doc_id", "unknown"),
                 "source": doc.get("source", "unknown"),
-                "page": doc.get("page", None),   # preserve page if exists
-                "chunk_id": global_chunk_id,     # global unique id
+                "page": doc.get("page", None),   
+                "chunk_id": global_chunk_id,     
                 "local_chunk_id": local_chunk_id,
                 "text": chunk_text
             })
